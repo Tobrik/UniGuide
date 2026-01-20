@@ -1,5 +1,5 @@
 import React from 'react';
-import { GraduationCap, Layout, Compass } from 'lucide-react';
+import { GraduationCap, Layout, Compass, Brain } from 'lucide-react';
 
 interface HeaderProps {
   currentTab: string;
@@ -9,6 +9,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ currentTab, setTab }) => {
   const navItems = [
     { id: 'explore', label: 'Поиск Вузов', icon: Compass },
+    { id: 'career', label: 'Профориентация', icon: Brain },
     { id: 'roadmap', label: 'План Поступления', icon: Layout },
   ];
 

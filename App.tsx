@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import UniversityCard from './components/UniversityCard';
 import FilterSidebar from './components/FilterSidebar';
 import Roadmap from './components/Roadmap';
+import CareerTest from './components/CareerTest';
 import UniversityDetail from './components/UniversityDetail';
 import { UNIVERSITIES } from './constants';
 import { University, StudentStats } from './types';
@@ -132,8 +133,8 @@ const App: React.FC = () => {
       <main>
         {activeTab === 'explore' && (
           <>
-            <Hero onSearch={handleHeroSearch} onExplore={() => {}} />
-            
+            {!filters.search && <Hero onSearch={handleHeroSearch} onExplore={() => {}} />}
+
             <div className="max-w-7xl mx-auto px-4 py-12">
               <div className="flex flex-col lg:flex-row gap-8">
                 {/* Sidebar */}
@@ -192,6 +193,12 @@ const App: React.FC = () => {
               </div>
             </div>
           </>
+        )}
+
+        {activeTab === 'career' && (
+          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <CareerTest />
+          </div>
         )}
 
         {activeTab === 'roadmap' && (
