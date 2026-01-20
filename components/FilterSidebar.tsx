@@ -103,7 +103,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, setFilters, stat
               <Globe size={14} /> Регион
             </h3>
             <div className="space-y-2 max-h-48 overflow-y-auto pr-2">
-              {['Казахстан', 'США', 'Великобритания', 'Европа', 'Азия', 'Канада', 'Австралия'].map(region => (
+              {['Казахстан'].map(region => (
                 <label key={region} className="flex items-center gap-3 cursor-pointer group">
                   <input
                     type="checkbox"

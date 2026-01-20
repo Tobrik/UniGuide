@@ -1,110 +1,6 @@
 import { University, RoadmapStep } from './types';
 
-// Real university images and logos mapping
-const UNIVERSITY_IMAGES: Record<string, { image: string; logo: string }> = {
-  'MIT': {
-    image: 'https://images.unsplash.com/photo-1564981797816-1043664bf78d?w=1200&q=85',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/0/0c/MIT_logo.svg'
-  },
-  'Cambridge': {
-    image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1200&q=85',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/8/8a/University_of_Cambridge_logo.svg'
-  },
-  'Oxford': {
-    image: 'https://images.unsplash.com/photo-1607237138186-73d0979848ef?w=1200&q=85',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/f/ff/Oxford-University-Circlet.svg'
-  },
-  'Harvard': {
-    image: 'https://images.unsplash.com/photo-1562774053-701939374585?w=1200&q=85',
-    logo: 'https://upload.wikimedia.org/wikipedia/en/2/29/Harvard_shield_wreath.svg'
-  },
-  'Stanford': {
-    image: 'https://images.unsplash.com/photo-1592280771190-3e2e4d571952?w=1200&q=85',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/b/b5/Seal_of_Leland_Stanford_Junior_University.svg'
-  },
-  'Imperial': {
-    image: 'https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=1200&q=85',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/e/e1/Imperial_College_London_crest.svg'
-  },
-  'ETH': {
-    image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&q=85',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/6/6b/ETH_Z%C3%BCrich_Logo_black.svg'
-  },
-  'NUS': {
-    image: 'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=1200&q=85',
-    logo: 'https://upload.wikimedia.org/wikipedia/en/b/b9/NUS_coat_of_arms.svg'
-  },
-  'UCL': {
-    image: 'https://images.unsplash.com/photo-1525921429624-479b6a26d84d?w=1200&q=85',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/4/49/UCL_Logo.svg'
-  },
-  'Berkeley': {
-    image: 'https://images.unsplash.com/photo-1590012314607-689d021cfd03?w=1200&q=85',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/a/a1/Seal_of_University_of_California%2C_Berkeley.svg'
-  },
-  'Chicago': {
-    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&q=85',
-    logo: 'https://upload.wikimedia.org/wikipedia/en/7/79/University_of_Chicago_shield.svg'
-  },
-  'Pennsylvania': {
-    image: 'https://images.unsplash.com/photo-1627556704290-2b1f5853bf78?w=1200&q=85',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/9/92/UPenn_shield_with_banner.svg'
-  },
-  'Cornell': {
-    image: 'https://images.unsplash.com/photo-1565034946487-077786996e27?w=1200&q=85',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/4/47/Cornell_University_seal.svg'
-  },
-  'Melbourne': {
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=85',
-    logo: 'https://upload.wikimedia.org/wikipedia/en/1/1c/University_of_Melbourne_logo.svg'
-  },
-  'Caltech': {
-    image: 'https://images.unsplash.com/photo-1549651586-1e6a17b8307d?w=1200&q=85',
-    logo: 'https://upload.wikimedia.org/wikipedia/en/a/a4/Seal_of_the_California_Institute_of_Technology.svg'
-  },
-  'Yale': {
-    image: 'https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?w=1200&q=85',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/0/07/Yale_University_Shield_1.svg'
-  },
-  'Peking': {
-    image: 'https://images.unsplash.com/photo-1583324113626-70df0f4deaab?w=1200&q=85',
-    logo: 'https://upload.wikimedia.org/wikipedia/en/f/f4/Peking_University_seal.svg'
-  },
-  'Princeton': {
-    image: 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=1200&q=85',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/d/d0/Princeton_seal.svg'
-  },
-  'UNSW': {
-    image: 'https://images.unsplash.com/photo-1580901368919-7738efb0f87e?w=1200&q=85',
-    logo: 'https://upload.wikimedia.org/wikipedia/en/2/27/UNSW_Crest.svg'
-  },
-  'Sydney': {
-    image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1200&q=85',
-    logo: 'https://upload.wikimedia.org/wikipedia/en/c/cd/University_of_Sydney_Coat_of_Arms.svg'
-  },
-  'Toronto': {
-    image: 'https://images.unsplash.com/photo-1531572753322-ad063cecc140?w=1200&q=85',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/f/f5/University_of_Toronto_coat_of_arms.svg'
-  },
-  'Edinburgh': {
-    image: 'https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?w=1200&q=85',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/4/40/University_of_Edinburgh_ceremonial_roundel.svg'
-  },
-  'Columbia': {
-    image: 'https://images.unsplash.com/photo-1564981797816-1043664bf78d?w=1200&q=85',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/c/c2/Columbia_University_Shield.svg'
-  },
-  'PSL': {
-    image: 'https://images.unsplash.com/photo-1590650213165-430e8a3c8c14?w=1200&q=85',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Logo_Universit%C3%A9_PSL.svg'
-  },
-  'Tsinghua': {
-    image: 'https://images.unsplash.com/photo-1549281899-f75600a24107?w=1200&q=85',
-    logo: 'https://upload.wikimedia.org/wikipedia/en/e/e9/Tsinghua_University_Logo.svg'
-  }
-};
-
-// Fallback campus images for universities without specific images
+// Fallback campus images for universities
 const FALLBACK_CAMPUS_IMAGES = [
   "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1200&q=85", // Classical building
   "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=1200&q=85", // Library
@@ -118,36 +14,10 @@ const FALLBACK_CAMPUS_IMAGES = [
   "https://images.unsplash.com/photo-1525921429624-479b6a26d84d?w=1200&q=85"  // Arches
 ];
 
-const regions = ['США', 'Европа', 'Азия', 'Великобритания', 'Канада', 'Австралия', 'Казахстан'] as const;
+const regions = ['Казахстан'] as const;
 const programsList = ['Информатика', 'Экономика', 'Медицина', 'Инженерия', 'Искусство', 'Бизнес', 'Право', 'Психология', 'Архитектура', 'Международные отношения'];
 
 const realUnis: Partial<University & { imageKey: string }>[] = [
-  { name: 'Massachusetts Institute of Technology (MIT)', country: 'США', region: 'США', rankingQS: 1, location: 'Кембридж, США', imageKey: 'MIT' },
-  { name: 'University of Cambridge', country: 'Великобритания', region: 'Великобритания', rankingQS: 2, location: 'Кембридж, Великобритания', imageKey: 'Cambridge' },
-  { name: 'University of Oxford', country: 'Великобритания', region: 'Великобритания', rankingQS: 3, location: 'Оксфорд, Великобритания', imageKey: 'Oxford' },
-  { name: 'Harvard University', country: 'США', region: 'США', rankingQS: 4, location: 'Кембридж, США', imageKey: 'Harvard' },
-  { name: 'Stanford University', country: 'США', region: 'США', rankingQS: 5, location: 'Стэнфорд, США', imageKey: 'Stanford' },
-  { name: 'Imperial College London', country: 'Великобритания', region: 'Великобритания', rankingQS: 6, location: 'Лондон, Великобритания', imageKey: 'Imperial' },
-  { name: 'ETH Zurich', country: 'Швейцария', region: 'Европа', rankingQS: 7, location: 'Цюрих, Швейцария', imageKey: 'ETH' },
-  { name: 'National University of Singapore (NUS)', country: 'Сингапур', region: 'Азия', rankingQS: 8, location: 'Сингапур', imageKey: 'NUS' },
-  { name: 'UCL', country: 'Великобритания', region: 'Великобритания', rankingQS: 9, location: 'Лондон, Великобритания', imageKey: 'UCL' },
-  { name: 'University of California, Berkeley (UCB)', country: 'США', region: 'США', rankingQS: 10, location: 'Беркли, США', imageKey: 'Berkeley' },
-  { name: 'University of Chicago', country: 'США', region: 'США', rankingQS: 11, location: 'Чикаго, США', imageKey: 'Chicago' },
-  { name: 'University of Pennsylvania', country: 'США', region: 'США', rankingQS: 12, location: 'Филадельфия, США', imageKey: 'Pennsylvania' },
-  { name: 'Cornell University', country: 'США', region: 'США', rankingQS: 13, location: 'Итака, США', imageKey: 'Cornell' },
-  { name: 'University of Melbourne', country: 'Австралия', region: 'Австралия', rankingQS: 14, location: 'Мельбурн, Австралия', imageKey: 'Melbourne' },
-  { name: 'Caltech', country: 'США', region: 'США', rankingQS: 15, location: 'Пасадена, США', imageKey: 'Caltech' },
-  { name: 'Yale University', country: 'США', region: 'США', rankingQS: 16, location: 'Нью-Хейвен, США', imageKey: 'Yale' },
-  { name: 'Peking University', country: 'Китай', region: 'Азия', rankingQS: 17, location: 'Пекин, Китай', imageKey: 'Peking' },
-  { name: 'Princeton University', country: 'США', region: 'США', rankingQS: 18, location: 'Принстон, США', imageKey: 'Princeton' },
-  { name: 'University of New South Wales', country: 'Австралия', region: 'Австралия', rankingQS: 19, location: 'Сидней, Австралия', imageKey: 'UNSW' },
-  { name: 'University of Sydney', country: 'Австралия', region: 'Австралия', rankingQS: 20, location: 'Сидней, Австралия', imageKey: 'Sydney' },
-  { name: 'University of Toronto', country: 'Канада', region: 'Канада', rankingQS: 21, location: 'Торонто, Канада', imageKey: 'Toronto' },
-  { name: 'University of Edinburgh', country: 'Великобритания', region: 'Великобритания', rankingQS: 22, location: 'Эдинбург, Великобритания', imageKey: 'Edinburgh' },
-  { name: 'Columbia University', country: 'США', region: 'США', rankingQS: 23, location: 'Нью-Йорк, США', imageKey: 'Columbia' },
-  { name: 'PSL Research University', country: 'Франция', region: 'Европа', rankingQS: 24, location: 'Париж, Франция', imageKey: 'PSL' },
-  { name: 'Tsinghua University', country: 'Китай', region: 'Азия', rankingQS: 25, location: 'Пекин, Китай', imageKey: 'Tsinghua' },
-
   // Казахстанские университеты
   { name: 'Nazarbayev University', country: 'Казахстан', region: 'Казахстан', rankingQS: 295, location: 'Астана, Казахстан' },
   { name: 'Al-Farabi Kazakh National University', country: 'Казахстан', region: 'Казахстан', rankingQS: 347, location: 'Алматы, Казахстан' },
@@ -211,36 +81,19 @@ const DESCRIPTIONS = [
 export const generateUniversities = (): University[] => {
   const allUnis: University[] = [];
 
-  // Add real unis with their actual images and logos
+  // Add Kazakh universities
   realUnis.forEach((uni, index) => {
-    const isTopTier = uni.rankingQS! <= 20;
-    const isMidTier = uni.rankingQS! > 20 && uni.rankingQS! <= 50;
-    const isKazakh = uni.region === 'Казахстан';
-
     // Generate distinct programs for each
     const shuffledPrograms = [...programsList].sort(() => 0.5 - Math.random());
     const uniPrograms = shuffledPrograms.slice(0, 4);
 
-    // Get real images and logos from mapping
-    const imageData = uni.imageKey ? UNIVERSITY_IMAGES[uni.imageKey] : null;
-    const uniImage = imageData?.image || FALLBACK_CAMPUS_IMAGES[index % FALLBACK_CAMPUS_IMAGES.length];
-    const uniLogo = imageData?.logo || `https://ui-avatars.com/api/?name=${encodeURIComponent(uni.name || '')}&background=random&color=fff&size=100`;
+    // Use fallback images for all universities
+    const uniImage = FALLBACK_CAMPUS_IMAGES[index % FALLBACK_CAMPUS_IMAGES.length];
+    const uniLogo = `https://ui-avatars.com/api/?name=${encodeURIComponent(uni.name || '')}&background=random&color=fff&size=100`;
 
-    // Казахстанские университеты имеют более доступную стоимость
-    let tuitionCost: number;
-    if (isKazakh) {
-      tuitionCost = Math.floor(Math.random() * 3000) + 1000; // $1,000 - $4,000
-    } else {
-      tuitionCost = Math.floor(Math.random() * 50000) + 10000; // $10,000 - $60,000
-    }
-
-    // Acceptance rate для казахстанских вузов выше
-    let acceptRate: number;
-    if (isKazakh) {
-      acceptRate = Math.floor(Math.random() * 50) + 30; // 30-80%
-    } else {
-      acceptRate = isTopTier ? Math.floor(Math.random() * 10) + 4 : Math.floor(Math.random() * 30) + 15;
-    }
+    // Казахстанские университеты имеют доступную стоимость
+    const tuitionCost = Math.floor(Math.random() * 3000) + 1000; // $1,000 - $4,000
+    const acceptRate = Math.floor(Math.random() * 50) + 30; // 30-80%
 
     allUnis.push({
       id: `uni-${index}`,
@@ -252,23 +105,21 @@ export const generateUniversities = (): University[] => {
       tuition: tuitionCost,
       acceptanceRate: acceptRate,
       scholarships: Math.random() > 0.7 ? 'Полная' : Math.random() > 0.4 ? 'Частичная' : 'Нет',
-      language: isKazakh ? 'Русский/Казахский/Английский' : 'Английский',
+      language: 'Русский/Казахский/Английский',
       programs: uniPrograms,
       image: uniImage,
       logo: uniLogo,
-      description: isKazakh
-        ? "Ведущий казахстанский университет, предлагающий качественное образование по доступным ценам. Идеальный выбор для получения высшего образования в Казахстане."
-        : DESCRIPTIONS[index % DESCRIPTIONS.length],
+      description: "Ведущий казахстанский университет, предлагающий качественное образование по доступным ценам. Идеальный выбор для получения высшего образования в Казахстане.",
       website: `https://www.google.com/search?q=${encodeURIComponent(uni.name || '')}+official+website`,
       requirements: {
-        minGPA: isKazakh ? 3.0 : (isTopTier ? 3.8 : isMidTier ? 3.5 : 3.0),
-        minSAT: isKazakh ? 1000 : (isTopTier ? 1500 : isMidTier ? 1350 : 1200),
-        minIELTS: isKazakh ? 5.5 : (isTopTier ? 7.5 : 6.5)
+        minGPA: 3.0,
+        minSAT: 1000,
+        minIELTS: 5.5
       }
     });
   });
 
-  // Now we have 75 real universities (25 international + 50 Kazakh)
+  // Now we have 50 real Kazakh universities
 
   return allUnis;
 };
