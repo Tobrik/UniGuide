@@ -27,8 +27,9 @@ const App: React.FC = () => {
     search: '',
     regions: [] as string[],
     maxTuition: 60000,
-    minRanking: 100,
-    scholarshipsOnly: false
+    minRanking: 10000,
+    scholarshipsOnly: false,
+    programs: [] as string[]
   });
 
   const toggleFavorite = (id: string) => {
@@ -98,14 +99,16 @@ const App: React.FC = () => {
       ...uni,
       matchScore: calculateMatchScore(uni, studentStats)
     })).filter(uni => {
-      const matchesSearch = uni.name.toLowerCase().includes(filters.search.toLowerCase()) || 
+      const matchesSearch = uni.name.toLowerCase().includes(filters.search.toLowerCase()) ||
                             uni.programs.some(p => p.toLowerCase().includes(filters.search.toLowerCase()));
       const matchesRegion = filters.regions.length === 0 || filters.regions.includes(uni.region);
       const matchesTuition = uni.tuition <= filters.maxTuition;
       const matchesScholarship = !filters.scholarshipsOnly || uni.scholarships !== 'Нет';
       const matchesRanking = uni.rankingQS <= filters.minRanking;
+      const matchesPrograms = filters.programs.length === 0 ||
+                              filters.programs.some(fp => uni.programs.includes(fp));
 
-      return matchesSearch && matchesRegion && matchesTuition && matchesScholarship && matchesRanking;
+      return matchesSearch && matchesRegion && matchesTuition && matchesScholarship && matchesRanking && matchesPrograms;
     });
   }, [filters, studentStats]);
 
@@ -181,8 +184,8 @@ const App: React.FC = () => {
                   ) : (
                     <div className="text-center py-20 bg-white rounded-2xl border border-dashed border-slate-300">
                       <p className="text-slate-500 text-lg">По вашим критериям университеты не найдены.</p>
-                      <button 
-                        onClick={() => setFilters({ search: '', regions: [], maxTuition: 60000, minRanking: 100, scholarshipsOnly: false })}
+                      <button
+                        onClick={() => setFilters({ search: '', regions: [], maxTuition: 60000, minRanking: 10000, scholarshipsOnly: false, programs: [] })}
                         className="mt-4 text-academic-600 font-medium hover:underline"
                       >
                         Сбросить фильтры

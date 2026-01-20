@@ -6,8 +6,9 @@ interface FilterState {
   search: string;
   regions: string[];
   maxTuition: number;
-  minRanking: number; 
+  minRanking: number;
   scholarshipsOnly: boolean;
+  programs: string[];
 }
 
 interface FilterSidebarProps {
@@ -18,7 +19,7 @@ interface FilterSidebarProps {
 }
 
 const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, setFilters, stats, setStats }) => {
-  
+
   const toggleRegion = (region: string) => {
     setFilters(prev => {
       if (prev.regions.includes(region)) {
@@ -28,8 +29,19 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, setFilters, stat
     });
   };
 
+  const toggleProgram = (program: string) => {
+    setFilters(prev => {
+      if (prev.programs.includes(program)) {
+        return { ...prev, programs: prev.programs.filter(p => p !== program) };
+      }
+      return { ...prev, programs: [...prev.programs, program] };
+    });
+  };
+
+  const allPrograms = ['Информатика', 'Экономика', 'Медицина', 'Инженерия', 'Искусство', 'Бизнес', 'Право', 'Психология', 'Архитектура', 'Международные отношения'];
+
   return (
-    <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 sticky top-24 space-y-8">
+    <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto space-y-8">
       
       {/* My Stats Section */}
       <div>
@@ -90,16 +102,36 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, setFilters, stat
             <h3 className="flex items-center gap-2 text-sm font-semibold text-slate-500 mb-3 uppercase tracking-wider">
               <Globe size={14} /> Регион
             </h3>
-            <div className="space-y-2">
-              {['США', 'Великобритания', 'Европа', 'Азия', 'Канада', 'Австралия'].map(region => (
+            <div className="space-y-2 max-h-48 overflow-y-auto pr-2">
+              {['Казахстан', 'США', 'Великобритания', 'Европа', 'Азия', 'Канада', 'Австралия'].map(region => (
                 <label key={region} className="flex items-center gap-3 cursor-pointer group">
-                  <input 
-                    type="checkbox" 
+                  <input
+                    type="checkbox"
                     checked={filters.regions.includes(region)}
                     onChange={() => toggleRegion(region)}
                     className="w-4 h-4 rounded border-slate-300 text-academic-600 focus:ring-academic-500"
                   />
                   <span className="text-slate-700 group-hover:text-academic-600 transition-colors">{region}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          {/* Programs/Majors */}
+          <div>
+            <h3 className="flex items-center gap-2 text-sm font-semibold text-slate-500 mb-3 uppercase tracking-wider">
+              <Filter size={14} /> Направление
+            </h3>
+            <div className="space-y-2 max-h-48 overflow-y-auto pr-2">
+              {allPrograms.map(program => (
+                <label key={program} className="flex items-center gap-3 cursor-pointer group">
+                  <input
+                    type="checkbox"
+                    checked={filters.programs.includes(program)}
+                    onChange={() => toggleProgram(program)}
+                    className="w-4 h-4 rounded border-slate-300 text-academic-600 focus:ring-academic-500"
+                  />
+                  <span className="text-slate-700 group-hover:text-academic-600 transition-colors text-sm">{program}</span>
                 </label>
               ))}
             </div>
