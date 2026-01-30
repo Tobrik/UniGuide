@@ -5,6 +5,7 @@ import UniversityCard from './components/UniversityCard';
 import FilterSidebar from './components/FilterSidebar';
 import Roadmap from './components/Roadmap';
 import CareerTest from './components/CareerTest';
+import Chat from './components/Chat';
 import UniversityDetail from './components/UniversityDetail';
 import { UNIVERSITIES } from './constants';
 import { University, StudentStats } from './types';
@@ -201,6 +202,12 @@ const App: React.FC = () => {
         {activeTab === 'career' && (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
             <CareerTest />
+          </div>
+        )}
+
+        {activeTab === 'chat' && (
+          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <Chat />
           </div>
         )}
 

@@ -82,56 +82,56 @@ const MAJORS: Record<string, MajorRecommendation> = {
     description: "Программирование, искусственный интеллект, разработка ПО",
     icon: Code,
     careers: ["Software Engineer", "Data Scientist", "AI Researcher", "Full-Stack Developer"],
-    universities: ["MIT", "Stanford", "Carnegie Mellon", "Berkeley"]
+    universities: ["Nazarbayev University", "KIMEP University", "KBTU", "International IT University"]
   },
   engineering: {
     name: "Engineering (Инженерия)",
     description: "Создание технологий, механика, электроника",
     icon: Calculator,
     careers: ["Mechanical Engineer", "Electrical Engineer", "Robotics Engineer"],
-    universities: ["MIT", "Stanford", "Caltech", "ETH Zurich"]
+    universities: ["Satbayev University", "Nazarbayev University", "KBTU", "Karaganda Technical University"]
   },
   medicine: {
     name: "Medicine (Медицина)",
     description: "Лечение людей, здравоохранение, биомедицина",
     icon: Heart,
     careers: ["Doctor", "Surgeon", "Medical Researcher", "Pharmacist"],
-    universities: ["Harvard", "Johns Hopkins", "Cambridge", "Oxford"]
+    universities: ["Astana Medical University", "Kazakh National Medical University", "West Kazakhstan Medical Academy", "Kazakhstan-Russian Medical University"]
   },
   business: {
     name: "Business & Management (Бизнес)",
     description: "Менеджмент, предпринимательство, консалтинг",
     icon: Users,
     careers: ["Business Consultant", "Entrepreneur", "Product Manager", "Marketing Director"],
-    universities: ["Harvard", "Stanford", "Wharton", "INSEAD"]
+    universities: ["KIMEP University", "Narxoz University", "Almaty Management University", "Nazarbayev University"]
   },
   design: {
     name: "Design & Arts (Дизайн и Искусство)",
     description: "UX/UI дизайн, графический дизайн, архитектура",
     icon: Palette,
     careers: ["UX Designer", "Graphic Designer", "Creative Director", "Architect"],
-    universities: ["Parsons", "Rhode Island School of Design", "RCA", "MIT Media Lab"]
+    universities: ["Kazakh Leading Academy of Architecture", "Almaty Technological University", "L. N. Gumilyov Eurasian National University", "Al-Farabi KazNU"]
   },
   science: {
     name: "Natural Sciences (Естественные науки)",
     description: "Физика, химия, биология, исследования",
     icon: Microscope,
     careers: ["Research Scientist", "Lab Technician", "Data Analyst", "Professor"],
-    universities: ["Cambridge", "Oxford", "Caltech", "ETH Zurich"]
+    universities: ["Nazarbayev University", "Al-Farabi KazNU", "L. N. Gumilyov Eurasian National University", "E. A. Buketov University"]
   },
   economics: {
     name: "Economics & Finance (Экономика)",
     description: "Финансы, аналитика, экономическая политика",
     icon: Globe,
     careers: ["Financial Analyst", "Economist", "Investment Banker", "Consultant"],
-    universities: ["Harvard", "LSE", "Chicago", "MIT"]
+    universities: ["Narxoz University", "KIMEP University", "Financial Academy", "Al-Farabi KazNU"]
   },
   law: {
     name: "Law (Право)",
     description: "Юриспруденция, международное право, правосудие",
     icon: Brain,
     careers: ["Lawyer", "Judge", "Legal Consultant", "Corporate Counsel"],
-    universities: ["Yale", "Harvard", "Oxford", "Cambridge"]
+    universities: ["Al-Farabi KazNU", "Kazakh Ablai Khan University", "L. N. Gumilyov Eurasian National University", "Caspian University"]
   }
 };
 
