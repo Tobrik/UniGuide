@@ -102,7 +102,7 @@ export function AuthModal({ open, onOpenChange }: AuthModalProps) {
     <Dialog open={open} onOpenChange={(v) => { onOpenChange(v); if (!v) resetForms(); }}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Добро пожаловать в UniGuide</DialogTitle>
+          <DialogTitle>Добро пожаловать в uni.kz</DialogTitle>
           <DialogDescription>
             Войдите или создайте аккаунт для доступа ко всем функциям
           </DialogDescription>

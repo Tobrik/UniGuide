@@ -8,7 +8,7 @@ import { Providers } from "@/components/providers";
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
 
 export const metadata: Metadata = {
-  title: "UniGuide - Платформа выбора университета в Казахстане",
+  title: "uni.kz — Платформа выбора университета в Казахстане",
   description:
     "Найдите идеальный университет среди 50+ вузов Казахстана. Калькулятор ЕНТ, профориентационный тест и полная информация о специальностях.",
   keywords: [
@@ -19,9 +19,9 @@ export const metadata: Metadata = {
     "гранты",
     "специальности",
   ],
-  authors: [{ name: "UniGuide" }],
+  authors: [{ name: "uni.kz" }],
   openGraph: {
-    title: "UniGuide - Платформа выбора университета в Казахстане",
+    title: "uni.kz — Платформа выбора университета в Казахстане",
     description:
       "Найдите идеальный университет среди 50+ вузов Казахстана",
     type: "website",

@@ -52,11 +52,10 @@ export function Header() {
         <nav className="container mx-auto flex h-16 items-center justify-between px-4">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-turkestan-500 text-white">
-              <GraduationCap className="h-5 w-5" />
-            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo.png" alt="uni.kz" className="h-9 w-9 rounded-lg object-contain" />
             <span className="hidden font-semibold text-lg sm:inline-block">
-              UniGuide
+              uni.kz
             </span>
           </Link>
 

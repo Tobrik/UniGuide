@@ -124,7 +124,7 @@ export function ChatWidget() {
             <div className="flex items-center gap-2">
               <Bot className="h-5 w-5" />
               <div>
-                <p className="text-sm font-semibold">UniGuide AI</p>
+                <p className="text-sm font-semibold">uni.kz AI</p>
                 <p className="text-xs opacity-80">Помощник абитуриента</p>
               </div>
             </div>
@@ -141,7 +141,7 @@ export function ChatWidget() {
             {messages.length === 0 && (
               <div className="text-center py-8">
                 <Bot className="mx-auto h-10 w-10 text-turkestan-400 mb-3" />
-                <p className="text-sm font-medium">Привет! Я UniGuide AI</p>
+                <p className="text-sm font-medium">Привет! Я uni.kz AI</p>
                 <p className="text-xs text-muted-foreground mt-1">
                   Спроси меня о университетах, специальностях или подготовке к ЕНТ
                 </p>

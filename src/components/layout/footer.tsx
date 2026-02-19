@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { GraduationCap, Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 
 const footerLinks = {
   platform: [
@@ -31,10 +31,9 @@ export function Footer() {
           {/* Brand */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-turkestan-500 text-white">
-                <GraduationCap className="h-6 w-6" />
-              </div>
-              <span className="font-bold text-xl text-white">UniGuide</span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logo.png" alt="uni.kz" className="h-10 w-10 rounded-lg object-contain" />
+              <span className="font-bold text-xl text-white">uni.kz</span>
             </Link>
             <p className="text-sm text-slate-400">
               Платформа для выбора университета и профессии в Казахстане.
@@ -43,7 +42,7 @@ export function Footer() {
             <div className="space-y-2 text-sm">
               <div className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-turkestan-400" />
-                <span>info@uniguide.kz</span>
+                <span>info@uni.kz</span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-turkestan-400" />
@@ -112,7 +111,7 @@ export function Footer() {
         <div className="mt-12 border-t border-slate-700 pt-8">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <p className="text-sm text-slate-400">
-              © 2024 UniGuide. Все права защищены.
+              © 2024 uni.kz. Все права защищены.
             </p>
             <div className="flex gap-6 text-sm">
               <Link href="#" className="hover:text-turkestan-400 transition-colors">
