@@ -34,6 +34,7 @@ export interface University {
   addressRu?: string | null;
   studentsCount?: number | null;
   hasHostel: boolean;
+  hasMilitaryDept: boolean;
   acceptanceRate?: number | null;
   tuitionFee?: number | null;
   accreditation?: string | null;
