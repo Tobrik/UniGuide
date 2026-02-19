@@ -15,8 +15,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { COUNTRIES, MAJOR_CATEGORIES } from "@/types";
+import { CITIES } from "@/types";
 import { cn } from "@/lib/utils";
+
+const UNIVERSITY_TYPES = [
+  { value: "PUBLIC", label: "Государственный" },
+  { value: "PRIVATE", label: "Частный" },
+  { value: "NATIONAL", label: "Национальный" },
+  { value: "INTERNATIONAL", label: "Международный" },
+];
 
 interface UniversityFiltersProps {
   className?: string;
@@ -25,26 +32,25 @@ interface UniversityFiltersProps {
 export function UniversityFilters({ className }: UniversityFiltersProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
+
   const [showFilters, setShowFilters] = useState(false);
 
   const [filters, setFilters] = useState({
     query: searchParams.get("query") || "",
-    country: searchParams.get("country") || "all",
-    category: searchParams.get("category") || "all",
-    minScore: searchParams.get("minScore") || "",
-    maxTuition: searchParams.get("maxTuition") || "all",
+    city: searchParams.get("city") || "all",
+    universityType: searchParams.get("universityType") || "all",
     hasHostel: searchParams.get("hasHostel") === "true",
+    hasMilitaryDept: searchParams.get("hasMilitaryDept") === "true",
   });
 
   const updateFilters = useCallback((newFilters: typeof filters) => {
     const params = new URLSearchParams();
 
     if (newFilters.query) params.set("query", newFilters.query);
-    if (newFilters.country && newFilters.country !== "all") params.set("country", newFilters.country);
-    if (newFilters.category && newFilters.category !== "all") params.set("category", newFilters.category);
-    if (newFilters.minScore) params.set("minScore", newFilters.minScore);
-    if (newFilters.maxTuition && newFilters.maxTuition !== "all") params.set("maxTuition", newFilters.maxTuition);
+    if (newFilters.city && newFilters.city !== "all") params.set("city", newFilters.city);
+    if (newFilters.universityType && newFilters.universityType !== "all") params.set("universityType", newFilters.universityType);
     if (newFilters.hasHostel) params.set("hasHostel", "true");
+    if (newFilters.hasMilitaryDept) params.set("hasMilitaryDept", "true");
 
     router.push(`/universities?${params.toString()}`);
   }, [router]);
@@ -57,22 +63,20 @@ export function UniversityFilters({ className }: UniversityFiltersProps) {
   const clearFilters = () => {
     const clearedFilters = {
       query: "",
-      country: "all",
-      category: "all",
-      minScore: "",
-      maxTuition: "all",
+      city: "all",
+      universityType: "all",
       hasHostel: false,
+      hasMilitaryDept: false,
     };
     setFilters(clearedFilters);
     router.push("/universities");
   };
 
   const activeFiltersCount = [
-    filters.country !== "all" && filters.country,
-    filters.category !== "all" && filters.category,
-    filters.minScore,
-    filters.maxTuition !== "all" && filters.maxTuition,
+    filters.city !== "all" && filters.city,
+    filters.universityType !== "all" && filters.universityType,
     filters.hasHostel,
+    filters.hasMilitaryDept,
   ].filter(Boolean).length;
 
   return (
@@ -117,90 +121,53 @@ export function UniversityFilters({ className }: UniversityFiltersProps) {
             )}
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {/* Country */}
+          <div className="grid gap-4 sm:grid-cols-2">
+            {/* City */}
             <div className="space-y-2">
-              <Label>Страна</Label>
+              <Label>Город</Label>
               <Select
-                value={filters.country}
+                value={filters.city}
                 onValueChange={(value) => {
-                  const newFilters = { ...filters, country: value };
+                  const newFilters = { ...filters, city: value };
                   setFilters(newFilters);
                   updateFilters(newFilters);
                 }}
               >
                 <SelectTrigger>
-                  <SelectValue placeholder="Выберите страну" />
+                  <SelectValue placeholder="Выберите город" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">Все страны</SelectItem>
-                  {COUNTRIES.map((country) => (
-                    <SelectItem key={country.value} value={country.value}>
-                      {country.flag} {country.label}
+                  <SelectItem value="all">Все города</SelectItem>
+                  {CITIES.map((city) => (
+                    <SelectItem key={city.value} value={city.value}>
+                      {city.label}
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
             </div>
 
-            {/* Category */}
+            {/* University Type */}
             <div className="space-y-2">
-              <Label>Направление</Label>
+              <Label>Тип университета</Label>
               <Select
-                value={filters.category}
+                value={filters.universityType}
                 onValueChange={(value) => {
-                  const newFilters = { ...filters, category: value };
+                  const newFilters = { ...filters, universityType: value };
                   setFilters(newFilters);
                   updateFilters(newFilters);
                 }}
               >
                 <SelectTrigger>
-                  <SelectValue placeholder="Выберите направление" />
+                  <SelectValue placeholder="Выберите тип" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">Все направления</SelectItem>
-                  {MAJOR_CATEGORIES.map((category) => (
-                    <SelectItem key={category.value} value={category.value}>
-                      {category.label}
+                  <SelectItem value="all">Все типы</SelectItem>
+                  {UNIVERSITY_TYPES.map((type) => (
+                    <SelectItem key={type.value} value={type.value}>
+                      {type.label}
                     </SelectItem>
                   ))}
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* Min Score */}
-            <div className="space-y-2">
-              <Label>Мин. рейтинг QS</Label>
-              <Input
-                type="number"
-                placeholder="Введите рейтинг"
-                value={filters.minScore}
-                onChange={(e) => setFilters({ ...filters, minScore: e.target.value })}
-                min={1}
-                max={1000}
-              />
-            </div>
-
-            {/* Max Tuition */}
-            <div className="space-y-2">
-              <Label>Макс. стоимость ($/год)</Label>
-              <Select
-                value={filters.maxTuition}
-                onValueChange={(value) => {
-                  const newFilters = { ...filters, maxTuition: value };
-                  setFilters(newFilters);
-                  updateFilters(newFilters);
-                }}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Выберите бюджет" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">Любая стоимость</SelectItem>
-                  <SelectItem value="10000">до $10,000</SelectItem>
-                  <SelectItem value="25000">до $25,000</SelectItem>
-                  <SelectItem value="50000">до $50,000</SelectItem>
-                  <SelectItem value="75000">до $75,000</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -222,6 +189,20 @@ export function UniversityFilters({ className }: UniversityFiltersProps) {
                 Есть общежитие
               </Label>
             </div>
+            <div className="flex items-center space-x-2">
+              <Checkbox
+                id="hasMilitaryDept"
+                checked={filters.hasMilitaryDept}
+                onCheckedChange={(checked) => {
+                  const newFilters = { ...filters, hasMilitaryDept: checked as boolean };
+                  setFilters(newFilters);
+                  updateFilters(newFilters);
+                }}
+              />
+              <Label htmlFor="hasMilitaryDept" className="cursor-pointer">
+                Военная кафедра
+              </Label>
+            </div>
           </div>
 
           {/* Apply Button */}
@@ -238,26 +219,26 @@ export function UniversityFilters({ className }: UniversityFiltersProps) {
       {/* Active Filters Display */}
       {activeFiltersCount > 0 && (
         <div className="flex flex-wrap gap-2">
-          {filters.country !== "all" && (
+          {filters.city !== "all" && (
             <Badge variant="secondary" className="gap-1">
-              {COUNTRIES.find((c) => c.value === filters.country)?.label}
+              {CITIES.find((c) => c.value === filters.city)?.label}
               <X
                 className="h-3 w-3 cursor-pointer"
                 onClick={() => {
-                  const newFilters = { ...filters, country: "all" };
+                  const newFilters = { ...filters, city: "all" };
                   setFilters(newFilters);
                   updateFilters(newFilters);
                 }}
               />
             </Badge>
           )}
-          {filters.category !== "all" && (
+          {filters.universityType !== "all" && (
             <Badge variant="secondary" className="gap-1">
-              {MAJOR_CATEGORIES.find((c) => c.value === filters.category)?.label}
+              {UNIVERSITY_TYPES.find((t) => t.value === filters.universityType)?.label}
               <X
                 className="h-3 w-3 cursor-pointer"
                 onClick={() => {
-                  const newFilters = { ...filters, category: "all" };
+                  const newFilters = { ...filters, universityType: "all" };
                   setFilters(newFilters);
                   updateFilters(newFilters);
                 }}
@@ -271,6 +252,19 @@ export function UniversityFilters({ className }: UniversityFiltersProps) {
                 className="h-3 w-3 cursor-pointer"
                 onClick={() => {
                   const newFilters = { ...filters, hasHostel: false };
+                  setFilters(newFilters);
+                  updateFilters(newFilters);
+                }}
+              />
+            </Badge>
+          )}
+          {filters.hasMilitaryDept && (
+            <Badge variant="secondary" className="gap-1">
+              Военная кафедра
+              <X
+                className="h-3 w-3 cursor-pointer"
+                onClick={() => {
+                  const newFilters = { ...filters, hasMilitaryDept: false };
                   setFilters(newFilters);
                   updateFilters(newFilters);
                 }}

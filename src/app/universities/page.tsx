@@ -13,7 +13,7 @@ function UniversitiesContent() {
   // Get filter values from URL
   const query = searchParams.get("query")?.toLowerCase() || "";
   const city = searchParams.get("city") || "";
-  // const category = searchParams.get("category") || "";
+  const universityType = searchParams.get("universityType") || "";
   const hasHostel = searchParams.get("hasHostel") === "true";
   const hasMilitaryDept = searchParams.get("hasMilitaryDept") === "true";
 
@@ -38,13 +38,16 @@ function UniversitiesContent() {
       // City filter
       if (city && uni.city !== city) return false;
 
+      // University type filter
+      if (universityType && uni.universityType !== universityType) return false;
+
       // Features filters
       if (hasHostel && !uni.hasHostel) return false;
       if (hasMilitaryDept && !uni.hasMilitaryDept) return false;
 
       return true;
     });
-  }, [query, city, hasHostel, hasMilitaryDept]);
+  }, [query, city, universityType, hasHostel, hasMilitaryDept]);
 
   // Sort by ranking
   const sortedUniversities = [...filteredUniversities].sort(
