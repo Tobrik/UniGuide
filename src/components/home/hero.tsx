@@ -24,7 +24,7 @@ export function Hero() {
     e.preventDefault();
     const params = new URLSearchParams();
     if (searchQuery) params.set("query", searchQuery);
-    if (selectedCity) params.set("city", selectedCity);
+    if (selectedCity && selectedCity !== "all") params.set("city", selectedCity);
     router.push(`/universities?${params.toString()}`);
   };
 
@@ -78,7 +78,7 @@ export function Hero() {
                     <SelectValue placeholder="Город" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">Все города</SelectItem>
+                    <SelectItem value="all">Все города</SelectItem>
                     {CITIES.map((city) => (
                       <SelectItem key={city.value} value={city.value}>
                         {city.label}
