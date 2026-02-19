@@ -1,36 +1,111 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# uni.kz — Платформа для абитуриентов Казахстана
 
-## Getting Started
+<div align="center">
 
-First, run the development server:
+![Next.js](https://img.shields.io/badge/Next.js-14-black?logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript)
+![Firebase](https://img.shields.io/badge/Firebase-Auth%20%2B%20Firestore-orange?logo=firebase)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38bdf8?logo=tailwindcss)
+
+**Умный гид по университетам Казахстана**
+
+[Демо](https://uni-kz.vercel.app) · [Исходный код](https://github.com/Tobrik/UniGuide)
+
+</div>
+
+---
+
+## О проекте
+
+**uni.kz** — веб-платформа, помогающая казахстанским абитуриентам выбрать университет и специальность. Проект объединяет базу из 60+ университетов, профориентационный тест RIASEC, калькулятор ЕНТ и чат-помощника.
+
+### Возможности
+
+- **Каталог университетов** — поиск и фильтрация по городу, типу и направлению. Подробные карточки с описанием, контактами и фото
+- **Профориентационный тест** — тест по методике RIASEC (30 вопросов) с рекомендацией подходящих специальностей
+- **Калькулятор ЕНТ** — расчёт баллов по предметам, определение категории и подходящих грантов
+- **Чат-помощник** — ответы на вопросы о поступлении, университетах и подготовке к ЕНТ
+- **Авторизация** — регистрация и вход по email через Firebase Auth
+
+## Технологии
+
+| Категория | Технологии |
+|-----------|-----------|
+| Frontend | Next.js 14, React 18, TypeScript |
+| Стилизация | Tailwind CSS, Radix UI, Lucide Icons |
+| Авторизация | Firebase Authentication |
+| База данных | Firebase Firestore |
+| Деплой | Vercel |
+
+## Быстрый старт
+
+### 1. Клонирование
+
+```bash
+git clone https://github.com/Tobrik/UniGuide.git
+cd UniGuide
+```
+
+### 2. Установка зависимостей
+
+```bash
+npm install
+```
+
+### 3. Настройка переменных окружения
+
+Создайте файл `.env` в корне проекта:
+
+```env
+NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+GROQ_API_KEY=your_groq_api_key
+```
+
+### 4. Запуск
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Откройте [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Структура проекта
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/
+│   ├── api/chat/        # API для чат-помощника
+│   ├── calculator/      # Калькулятор ЕНТ
+│   ├── career/          # Профориентационный тест
+│   ├── universities/    # Каталог университетов
+│   └── university/      # Страница университета
+├── components/
+│   ├── auth/            # Авторизация
+│   ├── chat/            # Чат-виджет
+│   ├── home/            # Главная страница
+│   ├── layout/          # Header, Footer
+│   └── ui/              # UI компоненты (Radix)
+├── lib/
+│   ├── auth-context.tsx # Контекст авторизации
+│   ├── data.ts          # Данные университетов
+│   ├── firebase.ts      # Инициализация Firebase
+│   └── firestore.ts     # Функции Firestore
+└── types/               # TypeScript типы
+```
 
-## Learn More
+## Деплой
 
-To learn more about Next.js, take a look at the following resources:
+Проект настроен для деплоя на Vercel:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Лицензия
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
