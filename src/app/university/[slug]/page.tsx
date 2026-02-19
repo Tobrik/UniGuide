@@ -222,19 +222,6 @@ export default function UniversityPage() {
                           </p>
                         </div>
                       </div>
-                      {university.accreditation && (
-                        <div className="flex items-center gap-3 sm:col-span-2">
-                          <div className="p-2 rounded-lg bg-turkestan-100">
-                            <Star className="h-5 w-5 text-turkestan-600" />
-                          </div>
-                          <div>
-                            <p className="font-medium">Аккредитация</p>
-                            <p className="text-sm text-muted-foreground">
-                              {university.accreditation}
-                            </p>
-                          </div>
-                        </div>
-                      )}
                     </div>
                   </CardContent>
                 </Card>
