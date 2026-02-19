@@ -225,7 +225,7 @@ export function ChatWidget() {
                 size="icon"
                 variant="turkestan"
                 className="h-9 w-9 rounded-full flex-shrink-0"
-                onClick={sendMessage}
+                onClick={() => sendMessage()}
                 disabled={isLoading || !input.trim()}
               >
                 <Send className="h-4 w-4" />
