@@ -99,6 +99,24 @@ export const COUNTRIES = [
   { value: "hong_kong", label: "Гонконг", flag: "🇭🇰" },
 ];
 
+export const CITIES = [
+  { value: "astana", label: "Астана" },
+  { value: "almaty", label: "Алматы" },
+  { value: "shymkent", label: "Шымкент" },
+  { value: "karaganda", label: "Караганда" },
+  { value: "aktobe", label: "Актобе" },
+  { value: "pavlodar", label: "Павлодар" },
+  { value: "ust-kamenogorsk", label: "Усть-Каменогорск" },
+  { value: "taraz", label: "Тараз" },
+  { value: "kyzylorda", label: "Кызылорда" },
+  { value: "uralsk", label: "Уральск" },
+  { value: "petropavlovsk", label: "Петропавловск" },
+  { value: "semey", label: "Семей" },
+  { value: "atyrau", label: "Атырау" },
+  { value: "kostanay", label: "Костанай" },
+  { value: "aktau", label: "Актау" },
+];
+
 export const MAJOR_CATEGORIES = [
   { value: "IT", label: "IT и Программирование" },
   { value: "ENGINEERING", label: "Инженерия" },
