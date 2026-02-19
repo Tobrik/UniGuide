@@ -17,8 +17,8 @@ export interface University {
   name: string;
   nameRu: string;
   slug: string;
-  country: string;
-  countryRu: string;
+  country?: string;
+  countryRu?: string;
   city: string;
   cityRu: string;
   description?: string | null;
