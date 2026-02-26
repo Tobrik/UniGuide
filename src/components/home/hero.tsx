@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { Search, GraduationCap, MapPin, Trophy, Play } from "lucide-react";
+import Link from "next/link";
+import { Search, GraduationCap, MapPin, Trophy, Compass, Calculator } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -122,33 +123,41 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right Column - Feature Card */}
-          <div className="hidden lg:block">
-            <div className="relative rounded-2xl overflow-hidden bg-white/10 backdrop-blur-sm border border-white/20 p-6">
-              <div className="aspect-video relative rounded-lg overflow-hidden bg-slate-800">
-                <Image
-                  src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&h=450&fit=crop"
-                  alt="Students learning"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <button className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 shadow-lg hover:bg-white transition-colors">
-                    <Play className="h-6 w-6 text-turkestan-600 ml-1" />
-                  </button>
+          {/* Right Column - Quick Actions */}
+          <div className="hidden lg:flex flex-col gap-4">
+            <Link href="/career" className="group relative rounded-2xl overflow-hidden bg-white/10 backdrop-blur-sm border border-white/20 p-6 hover:bg-white/15 transition-all">
+              <div className="flex items-center gap-4">
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-turkestan-500/20">
+                  <Compass className="h-7 w-7 text-turkestan-300" />
+                </div>
+                <div className="text-white">
+                  <h3 className="font-semibold text-lg">Профориентационный тест</h3>
+                  <p className="text-sm text-white/60">Узнайте, какая профессия вам подходит по методике RIASEC</p>
                 </div>
               </div>
-              <div className="mt-4 text-white">
-                <h3 className="font-semibold text-lg">Как мы помогаем осуществить мечты</h3>
-                <p className="mt-2 text-sm text-white/70">
-                  Узнайте, как наша платформа помогает абитуриентам выбрать правильный путь
-                  в образовании и карьере.
-                </p>
-                <Button variant="turkestan" className="mt-4">
-                  Начать сейчас
-                </Button>
+            </Link>
+            <Link href="/calculator" className="group relative rounded-2xl overflow-hidden bg-white/10 backdrop-blur-sm border border-white/20 p-6 hover:bg-white/15 transition-all">
+              <div className="flex items-center gap-4">
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gold-500/20">
+                  <Calculator className="h-7 w-7 text-gold-300" />
+                </div>
+                <div className="text-white">
+                  <h3 className="font-semibold text-lg">Калькулятор ЕНТ</h3>
+                  <p className="text-sm text-white/60">Рассчитайте баллы и узнайте шансы на грант</p>
+                </div>
               </div>
-            </div>
+            </Link>
+            <Link href="/universities" className="group relative rounded-2xl overflow-hidden bg-white/10 backdrop-blur-sm border border-white/20 p-6 hover:bg-white/15 transition-all">
+              <div className="flex items-center gap-4">
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-white/10">
+                  <GraduationCap className="h-7 w-7 text-white/80" />
+                </div>
+                <div className="text-white">
+                  <h3 className="font-semibold text-lg">60+ университетов</h3>
+                  <p className="text-sm text-white/60">Полная база вузов Казахстана с описанием и контактами</p>
+                </div>
+              </div>
+            </Link>
           </div>
         </div>
       </div>
